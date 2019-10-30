@@ -1,5 +1,8 @@
 # CloudFormation
 
-# Cloudformation
+This is a basic repository for anything/everything Cloudformation
+- Starter templates for specific deployments (ECS, EKS etc)
+- Labs meant for hands on troubleshooting
 
-WIP
+## Amazon ECS
+Fargate Cluster - Public/Private Subnets

@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Basic Bucket template for hosting
+Resources:
+  S3Bucket: #This is our bucket resource
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      AccessControl: PublicRead #So your static site can be viewed by anyone
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+      DeletionPolicy: Retain
+Outputs:
+  WebsiteURL:
+      Value: !GetAtt
+        - S3Bucket
+        - WebsiteURL
+      Description: URL for website hosted on S3

@@ -9,5 +9,6 @@ to automatically run and shutdown instances in that account for all regions.
 
 #### Cloudwatch Event Rule
 Cron expression = `0 23 ? * MON-FRI *`
-Notice its set for 11:00pm, why? because these are done with UTC, so EST is UTC - 5hours
-Hence, 11:00pm UTC (subtract 5 hrs) will equal 6:00pm EST
+
+- Notice its set for 11:00pm, why? because these are done with UTC, so EST is UTC - 5hours
+- Hence, 11:00pm UTC (subtract 5 hrs) will equal 6:00pm EST

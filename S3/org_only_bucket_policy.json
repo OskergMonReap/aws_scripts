@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "OrgOnlyAccessToBucket",
+            "Principal": "*",
+            "Effect": "Deny",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::examplebucket/*",
+            "Condition": {
+                "StringNotEquals": {
+                   "aws:PrincipalOrgID": "0-a1b2c3"
+                }
+            }
+        }
+    ]
+}

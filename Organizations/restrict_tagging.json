@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "RestrictTaggingOperations",
+            "Effect": "Deny",
+            "Action": [
+                "iam:Tag*",
+                "iam:Untag*"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringNotLike": {
+                    "aws:PrincipalArn": "arn:aws:iam::*:role/OrganizationAccountAccessRole"
+                },
+                "Null": {
+                    "aws:RequestTag/DNSOperator": "false"
+                }
+            }
+        }
+    ]
+}

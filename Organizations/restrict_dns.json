@@ -1,0 +1,16 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "RestrictDNStoTag",
+            "Effect": "Deny",
+            "Action": "route53:*",
+            "Resource": "*",
+            "Condition": {
+                "StringNotEquals": {
+                  "aws:PrincipalTag/DNSOperator": "true"
+                }
+            }
+        }
+    ]
+}

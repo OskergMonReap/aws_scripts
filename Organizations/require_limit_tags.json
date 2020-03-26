@@ -1,0 +1,26 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:CreateSecret"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestTag/project": "${aws:PrincipalTag/project}",
+                    "aws:RequestTag/costcenter": "${aws:PrincipalTag/costcenter}"
+                },
+                "ForAllValues:StringEquals": {
+                    "aws:TagKeys": [
+                        "project",
+                        "createdBy",
+                        "costcenter",
+                        "application"
+                    ]
+                }
+            }
+        }
+    ]
+}

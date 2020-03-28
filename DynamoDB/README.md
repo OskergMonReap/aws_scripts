@@ -31,3 +31,24 @@ Fully managed NoSQL Database in AWS, multi-region, multi-master with built-in se
 > Possesses partition key identical to table, but with a different sort key from table
 >
 > Must be created at Table Creation time, cannot be added after the fact
+
+- - -
+
+## Working with Tables in Python3/Boto3
+Typically, when working with DynamoDB, you will be working with json. In order for json to translate cleanly into python code, mainly due to json not having an intrinsic Decimal type, we coerce floats in the following way:
+```
+import decimal
+import json
+
+import boto3
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('Movies')
+
+with open('ourfile.json') as json_file:
+    data = json.load(json_file, parse_float=decimal.Decimal)
+    for item in data:
+        # do something with data
+```
+- The focus here is line `json.load(json_file, parse_float=decimal.Decimal)`
+    - this tells python to turn floats into decimals within our json data

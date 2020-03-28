@@ -43,7 +43,7 @@ import json
 import boto3
 
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('Movies')
+table = dynamodb.Table('TableName')
 
 with open('ourfile.json') as json_file:
     data = json.load(json_file, parse_float=decimal.Decimal)

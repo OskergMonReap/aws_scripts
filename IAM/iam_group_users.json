@@ -1,0 +1,104 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Add an admin group and users.",
+
+  "Resources": {
+
+    "Danny": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "Path": "/",
+        "LoginProfile" : {
+          "Password" : "myP@ssW0rd"
+        },
+        "UserName":"Danny"
+      }
+      },
+    
+    "Bosco": {
+        "Type": "AWS::IAM::User",
+        "Properties": {
+          "Path": "/",
+          "LoginProfile" : {
+            "Password" : "myP@ssW0rd"
+          },
+          "UserName":"Bosco"
+        }
+      },
+      
+      "Edward": {
+        "Type": "AWS::IAM::User",
+        "Properties": {
+          "Path": "/",
+          "LoginProfile" : {
+            "Password" : "myP@ssW0rd"
+          },
+          "UserName":"Edward"
+        }
+      },
+
+    "DevOps": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "Path": "/",
+        "GroupName": "DevOps"
+
+      }
+    },
+
+    "AdminUserMembership": {
+      "Type": "AWS::IAM::UserToGroupAddition",
+      "Properties": {
+        "GroupName": { "Ref": "DevOps" },
+        "Users": [ { "Ref": "Danny" },{ "Ref": "Bosco" },{ "Ref": "Edward" } ]
+      }
+    },
+
+    "myaccesskey" : {
+      "Type" : "AWS::IAM::AccessKey",
+      "Properties" : {
+         "UserName" : { "Ref" : "Danny" }
+      }
+    } ,
+    "myaccesskey2" : {
+      "Type" : "AWS::IAM::AccessKey",
+      "Properties" : {
+         "UserName" : { "Ref" : "Bosco" }
+      }
+    } ,
+    "myaccesskey3" : {
+      "Type" : "AWS::IAM::AccessKey",
+      "Properties" : {
+         "UserName" : { "Ref" : "Edward" }
+      }
+    } ,
+
+    "ExplicitAdmin": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "Groups": [ { "Ref": "DevOps" } ],
+        "PolicyName": "devops-policy",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "NotAction": ["iam:*", "organizations:*"],
+              "Resource": "*"
+            },{
+              "Effect": "Allow",
+              "Action": [
+                  "iam:CreateServiceLinkedRole",
+                  "iam:DeleteServiceLinkedRole",
+                  "iam:ListRoles",
+                  "organizations:DescribeOrganization"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+
+  }
+}

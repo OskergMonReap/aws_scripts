@@ -28,7 +28,7 @@ Resources:
         Fn::ImportValue: !Sub ${EnvironmentName}:VpcId
       SecurityGroupIngress:
         # Allow access to ALB from anywhere on the internet
-        - CidrIp: 0.0.0.0/0
+        - CidrIp: '0.0.0.0/0'
         - IpProtocol: -1
   PublicLoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -69,8 +69,6 @@ Resources:
         - Value: '60'
   PublicLoadBalancerListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
-    DependsOn:
-      - PublicLoadBalancer
     Properties:
       DefaultActions:
         - TargetGroupArn: !Ref 'DummyTargetGroupPublic'

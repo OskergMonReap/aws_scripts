@@ -8,7 +8,8 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
-      DeletionPolicy: Retain
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
 Outputs:
   WebsiteURL:
       Value: !GetAtt

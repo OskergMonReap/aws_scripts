@@ -15,7 +15,7 @@ Boto3 scripts, user-data files and general notes on EC2 compute resources
  
 ### IoT & Greengrass
 
-Examples from AWS and personal scripts for Raspberry Pi 3 and Pycom Wipy micropython boards to integrate with AWS IoT
+Examples from AWS and personal scripts for Raspberry Pi 3, Pycom Wipy micropython and ESP32-devkitC boards to integrate with AWS IoT
 
 ### Lambda
 

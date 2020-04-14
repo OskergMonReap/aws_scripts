@@ -3,10 +3,10 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: Generates the lab version of the bulk_load_csv scenario, creates role bucket and table. User only focuses on Lambda and its trigger
 Resources:
   SourceBucket:
-    Type: 'AWS::S3::Bucket'
+    Type: AWS::S3::Bucket
     DeletionPolicy: Delete
   LambdaDBRole:
-    Type: 'AWS::IAM::Role'
+    Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
         Version: 2012-10-17
@@ -41,7 +41,7 @@ Resources:
                   - "dynamodb:*"
                 Resource: !GetAtt DynamoMovieTable.Arn
   DynamoMovieTable:
-    Type: 'AWS::DynamoDB::Table'
+    Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
         -
@@ -58,8 +58,8 @@ Resources:
           AttributeName: 'Title'
           KeyType: RANGE
       ProvisionedThroughput:
-        ReadCapacityUnits: '5'
-        WriteCapacityUnits: '5'
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
       TableName: 'Movies'
 Outputs:
   BucketARN:

@@ -18,7 +18,7 @@ Metadata:
         default: "Pick a globally unique name for your source S3 bucket"
 Resources:
   SourceBucket:
-    Type: 'AWS::S3::Bucket'
+    Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
       BucketName: !Ref BucketName
@@ -55,7 +55,7 @@ Resources:
             Principal:
               AWS: !GetAtt LambdaDBRole.Arn
   LambdaDBRole:
-    Type: 'AWS::IAM::Role'
+    Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
         Version: 2012-10-17
@@ -90,7 +90,7 @@ Resources:
                   - "dynamodb:*"
                 Resource: !GetAtt DynamoMovieTable.Arn
   DynamoMovieTable:
-    Type: 'AWS::DynamoDB::Table'
+    Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
         -
@@ -111,7 +111,7 @@ Resources:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
   BulkLoadLambda:
-    Type: 'AWS::Lambda::Function'
+    Type: AWS::Lambda::Function
     Properties:
       Runtime: python3.7
       Timeout: 60
